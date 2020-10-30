@@ -31,12 +31,12 @@ public struct WooProductVariationsRequest:RestAPIRequest {
     }
     
     ///Current page of the collection. Default is 1.
-    func page(_ value: Int) -> WooProductVariationsRequest {
+    public func page(_ value: Int) -> WooProductVariationsRequest {
         return _addParam(name: "page", value: String(value))
     }
     
     ///Maximum number of items to be returned in result set. Default is 10.
-    func perPage(_ value: Int) -> WooProductVariationsRequest {
+    public func perPage(_ value: Int) -> WooProductVariationsRequest {
         return _addParam(name: "per_page", value: String(value))
     }
     
@@ -49,7 +49,7 @@ public struct WooProductVariationsRequest:RestAPIRequest {
     
     //Keeps making calls until there aren't anymore orders to retrieve. Each time it retrieves a set of orders, the didRetrieve block will be called.
     //The boolean will be true once all orders have been retrieved.
-    func noLimitSend(didRetrieve: @escaping (Swift.Result<([WooProductVariation], Bool),Error>) -> Void) {
+    public func noLimitSend(didRetrieve: @escaping (Swift.Result<([WooProductVariation], Bool),Error>) -> Void) {
         guard let string = parameters?["page"], let page = Int(string) else { return }
         guard let string2 = parameters?["per_page"], let perPage = Int(string2) else { return }
         #if DEBUG

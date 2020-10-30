@@ -1,3 +1,3 @@
 # SwiftyWooCommerce
 
-A description of this package.
+API for communcating to a WooCommerce website via it's API.

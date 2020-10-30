@@ -9,30 +9,30 @@
 import Foundation
 
 
-struct WooProductResponse:Codable {
-    var products:[WooProduct]
+public struct WooProductResponse:Codable {
+    public var products:[WooProduct]
 }
 
-struct WooProductCategory:Codable {
+public struct WooProductCategory:Codable {
     
-    var id:Int
-    var name:String
-    var slug:String
+    public var id:Int
+    public var name:String
+    public var slug:String
     
 }
 
 //Used to organize product info when reqeuesting from the WooAPI
 public struct WooProduct:Codable {
     
-    var id:Int
+    public var id:Int
     
-    var name:String
+    public var name:String
     
-    var attributeOptions:[String:[String]]
+    public var attributeOptions:[String:[String]]
 
-    var variations:[Int]
+    public var variations:[Int]
     
-    var categories:[WooProductCategory]
+    public var categories:[WooProductCategory]
     
     private enum CodingKeys:String, CodingKey {
         case name = "name"
@@ -64,6 +64,6 @@ public struct WooProduct:Codable {
 
 
 fileprivate struct AttributeOptionSet:Codable {
-    var name:String
-    var options:[String]
+    public var name:String
+    public var options:[String]
 }

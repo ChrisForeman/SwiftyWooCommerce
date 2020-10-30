@@ -19,10 +19,11 @@ public class WooAPI {
     
     private static var _shared:WooAPI!
     
-    public static var shared:WooAPI {
+    //This is so we don't have to keep checking if "_shared" is nil or not.
+    private static var shared:WooAPI {
         get {
             if _shared == nil {
-                fatalError("Error: The \"WooAPI.configure()\" method must be called before the API can be used.")
+                fatalError("The WooAPI has not been configured. Call the \"WooAPI.configure()\" method before using the API.")
             }
             return _shared
         }
@@ -39,9 +40,8 @@ public class WooAPI {
     public static func configure(publicKey: String, privateKey: String, websiteURL: String) {
         if WooAPI._shared != nil {
             #if DEBUG
-            print("The WooCommerc API has already been configured.")
+            print("The WooCommerc API has already been configured. Reconfiguring...")
             #endif
-            return
         }
         WooAPI._shared = WooAPI(
             publicKey: publicKey,
@@ -59,27 +59,27 @@ public class WooAPI {
         return credentialData.base64EncodedString(options: [])
     }
     
-    public func listOrders() -> WooListOrdersRequest {
-        let endpoint = "\(rootEndpoint)/orders"
-        let request = WooListOrdersRequest(endPoint: endpoint, headers: authHeader)
+    public static func listOrders() -> WooListOrdersRequest {
+        let endpoint = "\(shared.rootEndpoint)/orders"
+        let request = WooListOrdersRequest(endPoint: endpoint, headers: shared.authHeader)
         return request
     }
     
-    public func listProducts() -> WooListProductsRequest {
-        let endpoint = "\(rootEndpoint)/products"
-        let request = WooListProductsRequest(endPoint: endpoint, headers: authHeader)
+    public static func listProducts() -> WooListProductsRequest {
+        let endpoint = "\(shared.rootEndpoint)/products"
+        let request = WooListProductsRequest(endPoint: endpoint, headers: shared.authHeader)
         return request
     }
     
-    public func listVariations(productID: String) -> WooProductVariationsRequest {
-        let endpoint = "\(rootEndpoint)/products/\(productID)/variations"
-        let request = WooProductVariationsRequest(endPoint: endpoint, headers: authHeader)
+    public static func listVariations(productID: String) -> WooProductVariationsRequest {
+        let endpoint = "\(shared.rootEndpoint)/products/\(productID)/variations"
+        let request = WooProductVariationsRequest(endPoint: endpoint, headers: shared.authHeader)
         return request
     }
     
-    public func retrieveOrder(_ number: String) -> WooOrderRequest {
-        let endpoint = "\(rootEndpoint)/orders/\(number)"
-        let request = WooOrderRequest(endPoint: endpoint, headers: authHeader)
+    public static func retrieveOrder(_ number: String) -> WooOrderRequest {
+        let endpoint = "\(shared.rootEndpoint)/orders/\(number)"
+        let request = WooOrderRequest(endPoint: endpoint, headers: shared.authHeader)
         return request
     }
 }

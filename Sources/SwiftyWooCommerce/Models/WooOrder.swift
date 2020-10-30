@@ -10,60 +10,60 @@ import Foundation
 
 public struct WooOrder: Codable {
     
-    let id: Int
-    let parentID: Int
-    let number: String
-    let orderKey: String
-    let createdVia: String
-    let version: String
-    let status: String
-    let currency: String
+    public let id: Int
+    public let parentID: Int
+    public let number: String
+    public let orderKey: String
+    public let createdVia: String
+    public let version: String
+    public let status: String
+    public let currency: String
     
     //WooCommerce formats these as Strings even though the documentation otherwise
-    let dateCreated: String
-    let dateCreatedGmt: String
-    let dateModified: String
-    let dateModifiedGmt: String
+    public let dateCreated: String
+    public let dateCreatedGmt: String
+    public let dateModified: String
+    public let dateModifiedGmt: String
     
-    let discountTotal: String
-    let discountTax: String
+    public let discountTotal: String
+    public let discountTax: String
     
-    let shippingTotal: String
-    let shippingTax: String
-    let cartTax: String
-    let total: String
-    let totalTax: String
+    public let shippingTotal: String
+    public let shippingTax: String
+    public let cartTax: String
+    public let total: String
+    public let totalTax: String
     
-    let pricesIncludeTax: Bool
+    public let pricesIncludeTax: Bool
     
-    let customerID: Int
-    let customerIPAddress: String
-    let customerUserAgent: String
-    let customerNote: String
+    public let customerID: Int
+    public let customerIPAddress: String
+    public let customerUserAgent: String
+    public let customerNote: String
     
-    let billing:WooBillingInfo
-    let shipping: WooShippingInfo
-    let paymentMethod: String
-    let paymentMethodTitle: String
-    let transactionID: String
+    public let billing:WooBillingInfo
+    public let shipping: WooShippingInfo
+    public let paymentMethod: String
+    public let paymentMethodTitle: String
+    public let transactionID: String
 
     //WooCommerce formats these as Strings even though the documentation otherwise
-    let datePaid: String?
-    let datePaidGmt: String?
-    let dateCompleted: String?
-    let dateCompletedGmt: String?
-    let cartHash: String
+    public let datePaid: String?
+    public let datePaidGmt: String?
+    public let dateCompleted: String?
+    public let dateCompletedGmt: String?
+    public let cartHash: String
     
-    let metaData: [WooMetaData]
+    public let metaData: [WooMetaData]
     
-    let lineItems: [WooLineItem]
-    let taxLines: [WooTaxLine]
-    let shippingLines: [WooShippingLine]
-    let feeLines: [WooFeeLine]
-    let couponLines: [WooCouponLine]
-    let refunds: [WooRefundLine]
+    public let lineItems: [WooLineItem]
+    public let taxLines: [WooTaxLine]
+    public let shippingLines: [WooShippingLine]
+    public let feeLines: [WooFeeLine]
+    public let couponLines: [WooCouponLine]
+    public let refunds: [WooRefundLine]
     
-    var setPaid:Bool?
+    public var setPaid:Bool?
     
     
     enum CodingKeys: String, CodingKey {
@@ -111,7 +111,7 @@ public struct WooOrder: Codable {
     
     //WooCommerce formats meta data oddly, this will create a dictionary from the decodedMeta data for easier use.
     //If the metaData happens to have duplicate keys, one of them will be overwritten by the other.
-    var metaDict:[String:String] {
+    public var metaDict:[String:String] {
         var dict:[String:String] = [:]
         for metaItem in metaData {
             dict[metaItem.key] = metaItem.value
@@ -123,20 +123,20 @@ public struct WooOrder: Codable {
 }
 
 
-//Because the structs below are closely related to the WooOrder struct and it is dependent on them, I'm putting them all in the same file.
+//Because the structs below are closely related to the WooOrder public struct and it is dependent on them, I'm putting them all in the same file.
 
-struct WooBillingInfo: Codable {
-    let firstName: String
-    let lastName: String
-    let company: String
-    let address1: String
-    let address2: String
-    let city: String
-    let state: String
-    let postcode: String
-    let country: String
-    let email: String
-    let phone: String
+public struct WooBillingInfo: Codable {
+    public let firstName: String
+    public let lastName: String
+    public let company: String
+    public let address1: String
+    public let address2: String
+    public let city: String
+    public let state: String
+    public let postcode: String
+    public let country: String
+    public let email: String
+    public let phone: String
     
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
@@ -149,10 +149,10 @@ struct WooBillingInfo: Codable {
 }
 
 
-struct WooShippingInfo: Codable {
-    let firstName, lastName, company, address1: String
-    let address2, city, state, postcode: String
-    let country: String
+public struct WooShippingInfo: Codable {
+    public let firstName, lastName, company, address1: String
+    public let address2, city, state, postcode: String
+    public let country: String
     
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
@@ -165,16 +165,16 @@ struct WooShippingInfo: Codable {
 }
 
 
-struct WooLineItem: Codable {
-    let id: Int
-    let name: String
-    let productID, variationID, quantity: Int
-    let taxClass, subtotal, subtotalTax, total: String
-    let totalTax: String
-    let taxes: [String]
-    let metaData: [WooMetaData]
-    let sku: String?
-    let price: Decimal
+public struct WooLineItem: Codable {
+    public let id: Int
+    public let name: String
+    public let productID, variationID, quantity: Int
+    public let taxClass, subtotal, subtotalTax, total: String
+    public let totalTax: String
+    public let taxes: [String]
+    public let metaData: [WooMetaData]
+    public let sku: String?
+    public let price: Decimal
     
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -192,20 +192,20 @@ struct WooLineItem: Codable {
     }
 }
 
-struct NestedMetaShippingData: Codable {
-    let file:String
-    let url:String
-    let type:String
-    let error:Bool
-    let shipment_id:String
+public struct NestedMetaShippingData: Codable {
+    public let file:String
+    public let url:String
+    public let type:String
+    public let error:Bool
+    public let shipment_id:String
 }
 
-struct WooMetaData: Codable {
+public struct WooMetaData: Codable {
     
-    let id: Int
-    let key:String
-    let value: String
-    let shippingData:NestedMetaShippingData?
+    public let id: Int
+    public let key:String
+    public let value: String
+    public let shippingData:NestedMetaShippingData?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -213,7 +213,7 @@ struct WooMetaData: Codable {
         case value
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
         key = try container.decode(String.self, forKey: .key)
@@ -229,15 +229,15 @@ struct WooMetaData: Codable {
     
 }
 
-struct WooTaxLine: Codable {
-    var id:Int
-    var rateCode:String
-    var rateID:String
-    var label:String
-    var compound:Bool
-    var taxTotal:String
-    var shippingTaxTotal:String
-    var metaData:[WooMetaData]
+public struct WooTaxLine: Codable {
+    public var id:Int
+    public var rateCode:String
+    public var rateID:String
+    public var label:String
+    public var compound:Bool
+    public var taxTotal:String
+    public var shippingTaxTotal:String
+    public var metaData:[WooMetaData]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -252,14 +252,14 @@ struct WooTaxLine: Codable {
     
 }
 
-struct WooShippingLine: Codable {
-    var id:Int
-    var methodTitle:String
-    var methodID:String
-    var total:String
-    var totalTax:String
-    var taxes:[WooTaxLine]
-    var metaData:[WooMetaData]
+public struct WooShippingLine: Codable {
+    public var id:Int
+    public var methodTitle:String
+    public var methodID:String
+    public var total:String
+    public var totalTax:String
+    public var taxes:[WooTaxLine]
+    public var metaData:[WooMetaData]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -273,15 +273,15 @@ struct WooShippingLine: Codable {
     
 }
 
-struct WooFeeLine: Codable {
-    var id:Int
-    var name:String
-    var taxClass:String
-    var taxStatus:String
-    var total:String
-    var totalTax:String
-    var taxes:String
-    var metaData:[WooMetaData]
+public struct WooFeeLine: Codable {
+    public var id:Int
+    public var name:String
+    public var taxClass:String
+    public var taxStatus:String
+    public var total:String
+    public var totalTax:String
+    public var taxes:String
+    public var metaData:[WooMetaData]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -296,13 +296,13 @@ struct WooFeeLine: Codable {
     
 }
 
-struct WooCouponLine: Codable {
+public struct WooCouponLine: Codable {
     
-    var id:Int
-    var code:String
-    var discount:String
-    var discountTax:String
-    var metaData:[WooMetaData]
+    public var id:Int
+    public var code:String
+    public var discount:String
+    public var discountTax:String
+    public var metaData:[WooMetaData]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -314,10 +314,10 @@ struct WooCouponLine: Codable {
     
 }
 
-struct WooRefundLine: Codable {
+public struct WooRefundLine: Codable {
     //Don't need coding keys for this one
-    var id:Int
-    var reason:String
-    var total:String
+    public var id:Int
+    public var reason:String
+    public var total:String
     
 }

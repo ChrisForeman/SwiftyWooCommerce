@@ -10,20 +10,20 @@ import Foundation
 
 //Barebones for what we need right now.
 
-struct WooProductVariantAttribute:Codable {
+public struct WooProductVariantAttribute:Codable {
     
-    var id:Int
-    var name:String
-    var option:String
+    public var id:Int
+    public var name:String
+    public var option:String
     
 }
 
 public struct WooProductVariation:Codable {
     
-    var id:Int
-    var price:Double
-    var attributes:[String:String]
-    var sku:String
+    public var id:Int
+    public var price:Double
+    public var attributes:[String:String]
+    public var sku:String
     
     private enum CodingKeys:CodingKey {
         case price

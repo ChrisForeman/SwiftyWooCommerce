@@ -49,6 +49,7 @@ public extension RestAPIRequest {
         var request = URLRequest(url: url.url!)
         request.httpMethod = self.method.rawValue
         request.allHTTPHeaderFields = self.headers
+        request.cachePolicy = .reloadIgnoringLocalCacheData //Disable cache
     
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard

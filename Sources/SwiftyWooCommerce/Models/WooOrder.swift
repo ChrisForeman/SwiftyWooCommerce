@@ -168,6 +168,7 @@ public struct WooShippingInfo: Codable {
 public struct WooLineItem: Codable {
     public let id: Int
     public let name: String
+    public let parentName:String?
     public let productID, variationID, quantity: Int
     public let taxClass, subtotal, subtotalTax, total: String
     public let totalTax: String
@@ -179,6 +180,7 @@ public struct WooLineItem: Codable {
     enum CodingKeys: String, CodingKey {
         case id, name
         case productID = "product_id"
+        case parentName = "parent_name"
         case variationID = "variation_id"
         case quantity
         case taxClass = "tax_class"

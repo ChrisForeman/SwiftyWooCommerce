@@ -53,10 +53,7 @@ public extension RestAPIRequest {
     
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard
-                let data = data,
-                let response = response as? HTTPURLResponse,
-                (200 ..< 300) ~= response.statusCode,
-                error == nil
+                let data = data
             else {
                 //Safe force unwrap
                 completion(.failure(error!))
